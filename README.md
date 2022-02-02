@@ -1,1 +1,5 @@
  ### Projeto labe-ninja em react
+ 
+ Labeninja e uma plataforma de Marketplace startup destinada à busca e oferta de prestações de serviço. 
+ Na LabeNinjas, os prestadores podem oferecer seus serviços livremente, enquanto outras pessoas
+ com demandas específicas podem encontrar perfis bem alinhados ao que precisam.
