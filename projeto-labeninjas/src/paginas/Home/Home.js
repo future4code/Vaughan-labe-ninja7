@@ -7,8 +7,8 @@ class Home extends React.Component {
                 <h1>LabeNinjas</h1>
                 <h3>Tudo o que você precisa a um click de distância</h3>
                 <div>
-                    <button onClick={() => this.props.changePage("form")}>Quero oferecer meu serviço</button>
-                    <button onClick={() => this.props.changePage("list")}>Quero contratar um serviço</button>
+                    <button onClick={() => this.props.changePage("cadastre")}>Quero oferecer meu serviço</button>
+                    <button onClick={() => this.props.changePage("listaJobs")}>Quero contratar um serviço</button>
                 </div>
             </HomePageContainer>
         )
