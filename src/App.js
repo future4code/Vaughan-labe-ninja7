@@ -5,13 +5,23 @@ import CadastreSeuJob from './paginas/CadastreSeuJob/CadastreSeuJob'
 import DetalheJob from './paginas/DetalheJob/DetalheJob'
 import Carrinho from "./paginas/Carrinho/Carrinho"
 import Header from "./components/Header/Header"
+import axios from "axios"
 
 
 class App extends React.Component {
   state = {
-    currentPage: "home",
+    currentPage: "cadastre",
    
   }
+
+  obterKey=() => {
+    const url = `https://labeninjas.herokuapp.com`
+    const body = {
+      name: "grupo7"
+    }
+    axios.post().then().catch()
+  }
+  
 
   changePage = (pageName) => {
     this.setState({ currentPage: pageName })
