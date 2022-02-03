@@ -7,7 +7,9 @@ const HomePageContainer = styled.div`
 `
 
 class Home extends React.Component {
+
     render(){
+        
         return(
             <HomePageContainer>
                 <h1>LabeNinjas</h1>
