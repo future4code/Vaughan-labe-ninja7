@@ -10,18 +10,10 @@ import axios from "axios"
 
 class App extends React.Component {
   state = {
-    currentPage: "cadastre",
+    currentPage: "home",
    
   }
 
-  obterKey=() => {
-    const url = `https://labeninjas.herokuapp.com`
-    const body = {
-      name: "grupo7"
-    }
-    axios.post().then().catch()
-  }
-  
 
   changePage = (pageName) => {
     this.setState({ currentPage: pageName })
@@ -32,7 +24,7 @@ class App extends React.Component {
       case "home":
         return <Home 
         contratar={() => this.setState({ currentPage: "listaJobs"})}
-        cadastrar={ () => this.setState({ currentPage: 'cadastre' }) }
+        cadastrar={() => this.setState({ currentPage: 'cadastre' }) }
         changePage={this.changePage}/>
       case "listaJobs":
         return <ContrateJob/>
