@@ -10,7 +10,7 @@ export default class Carrinho extends React.Component {
 
         return(
 
-            <div>Esse e o carrinho</div>
+            <div>ESSE E O CARRINHO</div>
         )
     }
 }

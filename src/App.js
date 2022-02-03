@@ -20,7 +20,10 @@ class App extends React.Component {
   choosePage = () => {
     switch (this.state.currentPage) {
       case "home":
-        return <Home changePage={this.changePage}/>
+        return <Home 
+        contratar={() => this.setState({ currentPage: "listaJobs"})}
+        cadastrar={ () => this.setState({ currentPage: 'cadastre' }) }
+        changePage={this.changePage}/>
       case "listaJobs":
         return <ContrateJob/>
       case "cadastre":
