@@ -6,10 +6,6 @@ import axios from "axios";
 
 export default class CadastreSeuJob extends React.Component {
 
-
-
-   
-
     Data = (event) => {
         this.setState({dueDate : event.target.value})
     }
@@ -22,7 +18,6 @@ export default class CadastreSeuJob extends React.Component {
         this.setState({description : event.target.value})
     }
 
-
    FormaPagamento = (event) => {
         this.setState({paymentMethods: event.target.value})
         console.log(this.state.paymentMethods)
@@ -31,7 +26,7 @@ export default class CadastreSeuJob extends React.Component {
     Preco = (event) => {
         this.setState({price : event.target.value})
     }
-  
+
     state = {
 
         title: "",
@@ -46,17 +41,14 @@ export default class CadastreSeuJob extends React.Component {
         const url = "https://labeninjas.herokuapp.com/jobs"
 
         const body = {
-
         title : this.state.title,
         description : this.state.description,
         price : this.state.price,
         paymentMethods : this.state.paymentMethods,
         dueDate : this.state.dueDate,
-
         }
 
-        axios.post(url, body, {headers: {
-            Authorization:"c523c7b3-fa48-4fbe-be79-c362eadb2683"}})
+        axios.post(url, body, {headers: {Authorization:"24dfb346-d6c6-4912-b155-f15dbb9a0f4d"}} )
 
         .then((resp)=>{
              alert(resp)
@@ -66,12 +58,11 @@ export default class CadastreSeuJob extends React.Component {
         .catch((error)=> {
             alert(`Não foi possivel fazer o cadastro, motivo: ${error}`)
         })
-
     }
+
     render() {
 
         return (
-
 
             <div>
         <>
