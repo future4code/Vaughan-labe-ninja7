@@ -9,3 +9,8 @@ link
 
 https://elated-lewin-724796.netlify.app/
 
+
+* Fizemos a parte inicial do projeto
+* Preparamos o site para receber a estilizaçao 
+* Criamos um layout intuitivo
+* Iniciamos a implementaçao da API 
