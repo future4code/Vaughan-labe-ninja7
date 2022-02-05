@@ -13,23 +13,8 @@ justify-items: center;
 `
 
 export default class Carrinho extends React.Component {
-
-    state = {
-        itens: []
-
-    }
-
-    componentDidMount() {
-
-        this.setState({ itens: this.props.recept })
-    }
-
-
-
-
     render() {
-        console.log(this.state.itens)
-        const ItensCarrinho = this.state.itens.map((x, y) => {
+        const ItensCarrinho = this.props.bola.map((x, y) => {
             return (
                <ContainerCards key={y}>
                   <Card>
@@ -46,7 +31,7 @@ export default class Carrinho extends React.Component {
                      <br />
                      {x.dueDate ? <p><strong>Prazo:</strong> {new Date(x.dueDate).toLocaleDateString()}</p> : "Carregando..."}
                   </Card>
-                  <button onClick={() => this.props.remover(x.id)} >Remover Ninja</button>
+                  <button onClick={() => this.props.remover(x.id) } >Remover Ninja</button>
                </ContainerCards>
             )
          })

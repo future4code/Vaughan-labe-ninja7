@@ -33,16 +33,25 @@ class App extends React.Component {
       
     const job = this.state.jobCarrinho.find(trabalho => x === trabalho.id)
     if (job) {
-        alert("Ja existente")
+        alert("Ja existente !")
     } else {
 
        const adicionarJob = this.state.listaJobs.find(trabalho => x === trabalho.id)
        const novoJob = [...this.state.jobCarrinho, { ...adicionarJob }]
        this.setState({ jobCarrinho: novoJob })
-
+      alert("Ninja adicionado !")
     }
  }
 
+remove = (id) => {
+  const canDelete = window.confirm("Tem certeza que deseja remover este Ninja?")
+  if (canDelete){
+    const car = this.state.jobCarrinho.filter((Item) => {
+      return Item.id !== id
+    })
+    this.setState({ jobCarrinho: car })
+  }
+}
 
   getAllJobs = () => {
   
@@ -71,7 +80,7 @@ class App extends React.Component {
       case "cadastre":
         return <CadastreSeuJob />
       case "carrinho":
-        return <Carrinho recept={this.state.jobCarrinho} remover={() => console.log("voce removeu do carrinho")}/>
+        return <Carrinho recept={this.state.jobCarrinho} remover={this.remove} bola={this.state.jobCarrinho}/>
       case "detalhes":
         return <DetalheJob/>
       default:
