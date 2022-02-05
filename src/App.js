@@ -53,6 +53,24 @@ remove = (id) => {
   }
 }
 
+removeTudo = () => {
+  const canDelete = window.confirm("Tem certeza que deseja remover todos Ninjas?")
+  if (canDelete){
+    const car = []
+    this.setState({ jobCarrinho: car })
+  }
+  
+}
+
+finalizar = () => {
+  const canFinish = window.confirm("Tem certeza que deseja realizar a compra ")
+  if (canFinish){
+    alert("Ninjas contratados !!!")
+    const car = []
+    this.setState({ jobCarrinho: car })
+  }
+}
+
   getAllJobs = () => {
   
 
@@ -60,11 +78,10 @@ remove = (id) => {
     axios
        .get(url, Key)
        .then((respostaPositiva) => {
-          console.log(respostaPositiva)
           this.setState({ listaJobs: respostaPositiva.data.jobs })
        })
        .catch((erro) => {
-          console.log("algo deu errado")
+          alert("algo deu errado contate o suporte para mais informaçoes", erro.data)
        })
  }
 
@@ -80,7 +97,7 @@ remove = (id) => {
       case "cadastre":
         return <CadastreSeuJob />
       case "carrinho":
-        return <Carrinho recept={this.state.jobCarrinho} remover={this.remove} bola={this.state.jobCarrinho}/>
+        return <Carrinho finalizar={this.finalizar} remover={this.remove} removeTudo={this.removeTudo} bola={this.state.jobCarrinho} valor={this.state.jobCarrinho}/>
       case "detalhes":
         return <DetalheJob/>
       default:

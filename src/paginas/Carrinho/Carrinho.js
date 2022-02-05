@@ -12,8 +12,19 @@ justify-items: center;
 
 `
 
+const ButtonContainer = styled.div`
+
+display:flex;
+
+`
+
 export default class Carrinho extends React.Component {
+
+
+
     render() {
+      const total = this.props.valor.reduce((total, valor) => total + valor.price, 0);
+
         const ItensCarrinho = this.props.bola.map((x, y) => {
             return (
                <ContainerCards key={y}>
@@ -38,8 +49,12 @@ export default class Carrinho extends React.Component {
 
         return (
             <>
-                <div>NINJAS SELECIONADOS</div>
+                <div>NINJAS SELECIONADOS      Valor Total: {total}</div>
                <Main>{ItensCarrinho}</Main>
+              { total ? <ButtonContainer>
+               <button onClick={() => this.props.finalizar()}>Finalizar compra</button>
+               <button onClick={() => this.props.removeTudo()}>Remover todos</button> 
+              </ButtonContainer> : <ButtonContainer>Vazio</ButtonContainer> }
             </>
 
         )

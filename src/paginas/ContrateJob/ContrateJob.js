@@ -94,7 +94,6 @@ export default class ContrateJob extends React.Component {
 
    render() {
 
-      console.log(this.state.jobCarrinho)
 
       const Cards = this.state.listaJobs
          .filter((job) => {
