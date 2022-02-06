@@ -1,10 +1,8 @@
 import React from 'react';
-import { BaseUrl } from '../../components/Header/BaseUrl'
-import { Key } from '../../components/Header/Key';
-import axios from 'axios';
+
 import styled from 'styled-components'
 
-const Card = styled.div`
+export const Card = styled.div`
 
 display: flex;
 flex-direction: column;
@@ -16,7 +14,7 @@ width: 20vw;
 
 `
 
-const ContainerCards = styled.div`
+export const ContainerCards = styled.div`
 margin: 5px;
 padding: 5px;
 border: 1px black solid;
@@ -26,7 +24,7 @@ align-items: center;
 `
 
 
-const Main = styled.main`
+export const Main = styled.main`
 
 display:grid;
 grid-template-columns: repeat(4, 1fr);
@@ -35,13 +33,13 @@ padding: 5px;
 justify-items: center;
 `
 
-const ConteinerInputs = styled.div`
+export const ConteinerInputs = styled.div`
 
 margin: 10px;
 
 `
 
-const Inputs = styled.div`
+export const Inputs = styled.div`
 
 display:flex;
 background-color : gray;
@@ -58,7 +56,12 @@ export default class ContrateJob extends React.Component {
       priceMin: '',
       priceMax: '',
       sortingParameter: '',
+      jobCarrinho: [],
    }
+
+   componentDidMount() {
+      this.props.getAllJobs()
+    }
 
    updateQuery = (ev) => {
 
@@ -75,31 +78,18 @@ export default class ContrateJob extends React.Component {
       this.setState({ priceMax: ev.target.value })
    }
 
-   sortingParameter=(ev)=>{
+   sortingParameter = (ev) => {
 
       this.setState({ sortingParameter: ev.target.value })
-
    }
 
 
    componentDidMount() {
 
-      this.getAllJobs()
+      this.setState({ listaJobs: this.props.entrada })
+      
    }
 
-   getAllJobs = () => {
-
-      const url = `${BaseUrl}/jobs`
-      axios
-         .get(url, Key)
-         .then((respostaPositiva) => {
-            console.log(respostaPositiva)
-            this.setState({ listaJobs: respostaPositiva.data.jobs })
-         })
-         .catch((erro) => {
-            console.log("algo deu errado")
-         })
-   }
 
 
    render() {
@@ -116,21 +106,21 @@ export default class ContrateJob extends React.Component {
          .filter(job => {
             return this.state.priceMax === "" || job.price <= this.state.priceMax
          })
-         .sort((a,b) => {
-            return  this.state.sortingParameter === "Minprice" ? a.price - b.price : ""
+         .sort((a, b) => {
+            return this.state.sortingParameter === "Minprice" ? a.price - b.price : ""
          })
-         .sort((a,b) => {
-            return  this.state.sortingParameter === "Maxprice" ?   b.price - a.price : ""
+         .sort((a, b) => {
+            return this.state.sortingParameter === "Maxprice" ? b.price - a.price : ""
          })
-         .sort((a,b) => {
-            return  this.state.sortingParameter === "dueDate" ? new Date(a.dueDate) - new Date(b.dueDate) : ""
+         .sort((a, b) => {
+            return this.state.sortingParameter === "dueDate" ? new Date(a.dueDate) - new Date(b.dueDate) : ""
          })
-         .sort((a,b) => {
-            return  this.state.sortingParameter === "title" ? a.title.localeCompare(b.title) : ""
+         .sort((a, b) => {
+            return this.state.sortingParameter === "title" ? a.title.localeCompare(b.title) : ""
          })
          .map((x, y) => {
             return (
-               <ContainerCards  key={y}>
+               <ContainerCards key={y}>
                   <Card>
                      <h3>{x.title}</h3>
                      {x.description}
@@ -145,7 +135,7 @@ export default class ContrateJob extends React.Component {
                      <br />
                      {x.dueDate ? <p><strong>Prazo:</strong> {new Date(x.dueDate).toLocaleDateString()}</p> : "Carregando..."}
                   </Card>
-                  <button>Adicionar no carrinho</button>
+                  <button onClick={() => this.props.botao(x.id)} >Adicionar Ninja</button>
                </ContainerCards>
             )
          })
@@ -166,17 +156,12 @@ export default class ContrateJob extends React.Component {
                         <option value="Minprice" >Crescente</option>
                         <option value="Maxprice" >Decrescente</option>
                         <option value="dueDate" >Prazo</option>
-
                      </select>
                   </span>
                </Inputs>
-
             </div>
             <Main>{Cards}</Main>
-
-            <button onClick={() => console.log(this.state.sortingParameter)} >Clicar</button>
          </>
-
       )
    }
 }
